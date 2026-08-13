@@ -1,0 +1,34 @@
+{
+  "has_truth": true,
+  "dataset": {
+    "source": "simulator v0.1 seed=20260813 n=13200",
+    "patients": 12090,
+    "claim_lines": 641552,
+    "distinct_codes": 106,
+    "first_day": 2922,
+    "last_day": 8765,
+    "has_truth": true
+  },
+  "study": {
+    "db_start": 2922,
+    "db_end": 8765,
+    "lookback_days": 1826,
+    "min_dx_claims": 2,
+    "min_dx_claim_spacing_days": 30,
+    "max_dx_claim_span_days": 365,
+    "signature_min_claims": 3,
+    "signature_min_distinct": 2,
+    "rmst_horizon_years": 15.0
+  },
+  "recovery_scores": {
+    "n": 6,
+    "spearman_rho": 0.8285714285714287,
+    "spearman_p": 0.04156268221574335,
+    "pearson_r": 0.9556277018287895,
+    "mean_abs_bias_years": 3.196194156195016,
+    "mean_understatement_fraction": 0.3423932685486432,
+    "median_selection_component": 0.11509536334759007,
+    "median_measurement_component": -2.2799664667394772
+  },
+  "gate_failures": []
+}

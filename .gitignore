@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Generated artefacts. The pipeline regenerates all of these from
+# `rdd all`; the report and figures are committed deliberately (see below)
+# so the repo is readable without running anything.
+data/interim/
+data/raw/
+outputs/run.log
