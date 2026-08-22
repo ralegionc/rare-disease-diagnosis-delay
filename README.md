@@ -79,7 +79,7 @@ network; a test asserts it.
 ```bash
 pip install -e ".[dev]"
 rdd all                    # calibrate -> simulate -> analyse -> validate -> figures -> report
-pytest                     # 87 tests
+pytest                     # 99 tests
 ```
 
 Individual stages:
@@ -87,6 +87,7 @@ Individual stages:
 ```bash
 rdd calibrate              # fit friction scalars to the published delays
 rdd simulate               # build the synthetic claims database
+rdd doctor                 # can this source support the estimate at all?
 rdd analyse                # cohorts, multi-state fits, decomposition, bias
 rdd validate --seeds 1 2 3 # recovery across independent replicates
 rdd figures && rdd report
@@ -102,11 +103,9 @@ Output lands in `outputs/`: `report.md`, `figures/*.png`, `tables/*.csv`.
 ```bash
 rdd ingest generic /path/to/extract     # two CSVs, see adapters/generic.py
 rdd ingest synpuf  /path/to/synpuf      # CMS public file
+rdd doctor                              # run this BEFORE analyse
 rdd analyse && rdd figures && rdd report
 ```
-
-`docs/REAL_DATA_RUNBOOK.md` covers how to get from here to real data, and
-`CLAUDE.md` is the working brief if you hand the repo to an agent.
 
 Always run `rdd doctor` before `rdd analyse` on a new source. It answers
 *can this database support the estimate at all* before anything computes one,
