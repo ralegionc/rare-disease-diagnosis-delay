@@ -1,0 +1,7 @@
+disease,dx_code,n_with_code,n_phenotype,n_cohort,n_signature_codes_missing,signature_codes_missing,published_delay_years,verdict
+ALS,G12.21,162,149,48,2,"G70.00, M54.12",1.0,BLOCKED: cohort 48 < 60 usable
+GD1,E75.22,275,252,75,0,,4.0,OK
+LOPD,E74.02,233,202,61,0,,8.0,LIMITED: history 4yr < published 8yr delay
+HAE,D84.1,265,238,62,0,,10.0,LIMITED: history 4yr < published 10yr delay
+hEDS,M35.7,250,238,63,0,,12.0,LIMITED: history 4yr < published 12yr delay
+FABRY,E75.21,216,188,53,0,,14.0,BLOCKED: cohort 53 < 60 usable

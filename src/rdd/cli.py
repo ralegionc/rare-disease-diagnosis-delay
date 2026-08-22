@@ -5,6 +5,7 @@
     rdd calibrate                 fit friction scalars to the literature anchors
     rdd simulate                  build the synthetic claims database
     rdd ingest <adapter> <path>   load a real source into the canonical schema
+    rdd doctor                    can this database answer the question at all?
     rdd analyse                   cohorts, multi-state fits, decomposition, bias
     rdd validate                  parameter recovery across seeds
     rdd figures                   render figures from stored tables
@@ -63,6 +64,19 @@ def cmd_ingest(args):
         for n in notes:
             print(f"  * {n}")
     return 0
+
+
+def cmd_doctor(args):
+    """Always run this first on a new source. It answers 'is this database
+    capable of supporting the estimate' before anything computes an estimate."""
+    from .doctor import diagnose
+
+    ds = pipeline.load_dataset()
+    report = diagnose(ds, DEFAULT_STUDY)
+    print(report.text())
+    report.per_disease.to_csv(TABDIR / "doctor_per_disease.csv", index=False)
+    print(f"Per-disease detail written to {TABDIR / 'doctor_per_disease.csv'}")
+    return 0 if report.usable else 2
 
 
 def cmd_analyse(args):
@@ -143,6 +157,9 @@ def main(argv=None) -> int:
     p.add_argument("adapter", choices=["synpuf", "generic", "omop"])
     p.add_argument("path")
     p.set_defaults(func=cmd_ingest)
+
+    p = sub.add_parser("doctor", help="check whether a source can support the estimate")
+    p.set_defaults(func=cmd_doctor)
 
     p = sub.add_parser("analyse", help="run the analysis stages")
     p.add_argument("--lookback-years", type=float, default=None)

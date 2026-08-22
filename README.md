@@ -92,6 +92,9 @@ rdd validate --seeds 1 2 3 # recovery across independent replicates
 rdd figures && rdd report
 ```
 
+`docs/REAL_DATA_RUNBOOK.md` covers how to get from here to real data, and
+`CLAUDE.md` is the working brief if you hand the repo to an agent.
+
 Output lands in `outputs/`: `report.md`, `figures/*.png`, `tables/*.csv`.
 
 ## Running it on real claims
@@ -101,6 +104,16 @@ rdd ingest generic /path/to/extract     # two CSVs, see adapters/generic.py
 rdd ingest synpuf  /path/to/synpuf      # CMS public file
 rdd analyse && rdd figures && rdd report
 ```
+
+`docs/REAL_DATA_RUNBOOK.md` covers how to get from here to real data, and
+`CLAUDE.md` is the working brief if you hand the repo to an agent.
+
+Always run `rdd doctor` before `rdd analyse` on a new source. It answers
+*can this database support the estimate at all* before anything computes one,
+catching the four failure modes that produce a plausible-looking number rather
+than an error: wrong code vocabulary, a look-back shorter than the delay,
+provider specialty collapsed to `OTHER`, and a cohort too small to mean
+anything. It exits non-zero on a blocker.
 
 Or against an OMOP CDM instance:
 
