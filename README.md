@@ -93,8 +93,7 @@ rdd validate --seeds 1 2 3 # recovery across independent replicates
 rdd figures && rdd report
 ```
 
-`docs/REAL_DATA_RUNBOOK.md` covers how to get from here to real data, and
-`CLAUDE.md` is the working brief if you hand the repo to an agent.
+`docs/REAL_DATA_RUNBOOK.md` covers how to get from here to real data.
 
 Output lands in `outputs/`: `report.md`, `figures/*.png`, `tables/*.csv`.
 
